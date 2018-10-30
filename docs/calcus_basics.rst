@@ -22,3 +22,16 @@ The ``/opt/ssd/`` is a shared space. Please keep your files under ``/opt/ssd/use
 Also, please treat disk space like a finite resource!
 
 Your files are visible to other users, but don't worry, they cannot modify or remove them - Linux has a strong concept of users and file ownership.
+
+Htop (checking processor load)
+------------------------------
+
+To see the currently running processes and the processor load, you can use the ``htop`` command.
+
+While htop is running, you can press:
+
+* ``h`` to see help
+* ``H`` to toggle the display of user process threads
+* ``q`` to quit
+
+You can ran htop monochrome mode by lounching it with ``htop -C`` (I noticed some problems when running htop inside tmux, and monochrome mode helped).
