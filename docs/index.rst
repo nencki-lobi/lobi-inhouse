@@ -15,4 +15,5 @@ Materials contained here should help you with using our computer resources, most
    calcus_basics
    command_line
    transferring_data
+   singularity
    contributing
