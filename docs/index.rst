@@ -16,6 +16,7 @@ Materials contained here should help you with using our computer resources, most
    command_line
    transferring_data
    tmux
+   software
    singularity
    tips_and_tricks
    contributing
