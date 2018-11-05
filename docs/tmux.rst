@@ -1,6 +1,8 @@
 Tmux
 ====
 
+Tmux is a wonderfully useful tool. We recommend using it for long-running pipelines: you can connect to Calcus over SSH, start your script inside a tmux session, detach from tmux and logout - this way, your script will keep on running, even though you are logged out (typically when you disconnect from SSH, your running processes are terminated, but the tmux session remains active on its own). Furthermore, with its windows and panes, tmux comes useful when you want to do multiple things in one terminal window. Another program, GNU Screen, serves the same purpose, but is not covered by this manual.
+
 Introduction
 ------------
 
