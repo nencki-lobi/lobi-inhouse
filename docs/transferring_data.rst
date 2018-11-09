@@ -40,3 +40,6 @@ Samba
 -----
 
 A different way.
+
+.. todo::
+   Describe how to use Samba

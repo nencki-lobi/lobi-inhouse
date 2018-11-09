@@ -18,5 +18,6 @@ Materials contained here should help you with using our computer resources, most
    tmux
    software
    singularity
+   matlab
    tips_and_tricks
    contributing
