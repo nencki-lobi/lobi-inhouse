@@ -20,4 +20,5 @@ Materials contained here should help you with using our computer resources, most
    singularity
    matlab
    tips_and_tricks
+   administration
    contributing
