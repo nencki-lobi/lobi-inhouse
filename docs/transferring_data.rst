@@ -39,12 +39,12 @@ Again, you can swap argument order to copy from Calcus.
 Samba
 -----
 
-Samba is convenient and preferred by many users. Operating systems (Windows, OSx, Debian/Ubuntu) enable that by default file browsers. You can browse content of Your HOME folder easily. Just type in Your file browser:
+Samba file transfer is available by default on most popular operating systems (Windows, OSx, Debian/Ubuntu). You can browse content of Your HOME folder easily. Just type in Your file browser:
 
 * Windows - ``\\192.168.199.58\``
 * OSx and Linux - smb://192.168.199.58
 
 and log in with Your default credentials.
 
-Collaborators without a SSH account on the server can also login by guest credentials (ask admin) and access data in /home/public. 
+Collaborators without a SSH account on the server can also login by guest credentials (ask admin) and access data in /home/public. Go on and share Your results with Your co-workers!
 
