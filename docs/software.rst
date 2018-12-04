@@ -25,6 +25,6 @@ ANTs enables parallel computation on 2 different levels - parallel execution of 
 |buildtemplateparallel parameters -j & -c (paralell execution of max 2 scripts with j=2 & c=2)
 |GNU parallel
 
-It is highly advisable not to exceed 16 (physical) or 32 (hyperthreaded) number of available cores on Calcus. For example You can run 2 parallel jobs in buildtemplateparallel.sh with -j 2 -c 2 with default ITK_GLOBAL...=8. The script will be executed on 8-16 cores depending on how many ANTs were prepared by btp.sh at the moment. Optionally, one can parallel 2 subjects on top of it with GNU parallel.
+It is highly advisable not to exceed 16 (physical) or 32 (hyperthreaded) number of available cores on Calcus. For example You can run 2 parallel jobs in buildtemplateparallel.sh with -j 2 -c 2 with default ITK_GLOBAL...=8. The script will be executed on 8-16 cores depending on how many ANTs were prepared by btp.sh at the moment. Optionally, one can parallel 2 subjects on top of it with GNU parallel resulting in 16-32 cores occupation.
 
 * O. Tange (2018): GNU Parallel 2018, March 2018, https://doi.org/10.5281/zenodo.1146014.
