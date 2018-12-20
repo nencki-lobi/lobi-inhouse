@@ -9,11 +9,12 @@ List
 | ants (neurodebian)
 | docker (official repo)
 | singularity (neurodebian)
-| matlab + matlab-support + libxt6
+| matlab + matlab-support dep: libxt6
 | python 2.7
 | python 3.6
 | fsl (fslinstaller.py)
-| dti-tk + libgl1
+| dti-tk dep: libgl1
+| mrtrix3 dep: git g++ python python-numpy libeigen3-dev zlib1g-dev libqt4-opengl-dev libgl1-mesa-dev libfftw3-dev libtiff5-dev
 
 ANTs
 --------------------
