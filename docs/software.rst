@@ -14,7 +14,7 @@ List
 | python 3.6
 | fsl (fslinstaller.py)
 | dti-tk dep: libgl1
-| mrtrix3 dep: git g++ python python-numpy libeigen3-dev zlib1g-dev libqt4-opengl-dev libgl1-mesa-dev libfftw3-dev libtiff5-dev
+| mrtrix3 dep: git g++ python python-numpy libeigen3-dev zlib1g-dev libqt4-opengl-dev libgl1-mesa-dev libfftw3-dev libtiff5-dev (neurodebian)
 
 ANTs
 --------------------
