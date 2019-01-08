@@ -18,6 +18,10 @@ List
 
 ANTs
 --------------------
+BUG ALERT
+
+The most updated version (clone of github repository) is located in /opt/software/ants_scripts/. Use absolute path if You want to be sure that there are no bugs in the ANTs scripts. However, default paths are set to neurodebian's installation (scripts & binaries) for better compatibility.  
+
 Parallelization and multithreading
 
 ANTs enables parallel computation on 2 different levels - parallel execution of ANTs scripts and multithreaded executables of ITK library. Additionaly, you can easily paralelize Your scripts with GNU parallel* on top of it (eg. in case of multiple subjects). Make sure whether it is still true for current ANTs implementation. Here is the list of available options:
