@@ -61,38 +61,47 @@ Use case: BIDS Apps
 
 You can use singularity to run `BIDS Apps <http://bids-apps.neuroimaging.io/about/>`_.
 
-In most cases you should be able to build a singularity image directly from Docker Hub. For example::
+Example - MRIQC
+^^^^^^^^^^^^^^^^^^
 
-  singularity build mriqc.img docker://poldracklab/mriqc:latest
+First, prepare your image (versions change frequently, so it's best if you do this yourself)::
 
-Replace latest with the desired version (using the "latest" tag is `discouraged <https://vsupalov.com/docker-latest-tag/>`_).
+  singularity build mriqc.simg docker://poldracklab/mriqc:latest
 
-In short::
+Replace "latest" with the desired version (using the "latest" tag is `discouraged <https://vsupalov.com/docker-latest-tag/>`_).
+To find the tags and their release dates you can (for example) check `mriqc page on docker hub <https://hub.docker.com/r/poldracklab/mriqc/tags>`_.
 
-  export SINGULARITY_BINDPATH=/opt/ssd/mszczepanik/my_dataset:/data:ro,/opt/ssd/mszczepanik/my_qc_output:/out
-  ./mriqc.img [options] /data /out participant
+Then you specify bindings for your data (read only) and output folders::
 
-FMRIPREP - Caveats
-------------------
+  export SINGULARITY_BINDPATH=/path/to/your_dataset:/data:ro,/path_to/your_qc_output:/out
+
+and run QC like this::
+
+  ./mriqc.simg [options] /data /out participant
+
+For the list of options see [4]_
+
+Example - FMRIPREP
+^^^^^^^^^^^^^^^^^^
 
 Tested using singularity v2.5.2 and fmriprep v1.2.1.
 
-ANTS & number of threads
-^^^^^^^^^^^^^^^^^^^^^^^^
+Caveat: ANTS & number of threads
+""""""""""""""""""""""""""""""""
 
-It appears that environment variables defined outside the container are visible inside it, and the ``ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS`` (defines the number of threads used by ANTS, currently set to 12 on Calcus) seems to take precedence over the ``--nthreads`` and ``--omp-nthreads`` options of fmriprep. It is therefore recommended that you unset it before running fmriprep (and probably also mriqc)::
+It appears that environment variables defined outside the container are visible inside it, and the ``ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS`` (defines the number of threads used by ANTS, currently set to 8 on Calcus) seems to take precedence over the ``--nthreads`` and ``--omp-nthreads`` options of fmriprep. It is therefore recommended that you unset it before running fmriprep (and probably also mriqc)::
 
   unset ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS
 
-Freesurfer license
-^^^^^^^^^^^^^^^^^^
+Caveat: freesurfer license
+""""""""""""""""""""""""""
 
 You need a freesurfer license to run fmriprep (even with ``--fs-no-reconall``). It has to be mounted inside the container and specified with ``--fs-license-file``. Because ``$HOME`` is mounted by default, you can put the license file in your home folder for simplicity.
 
-Fmriprep example
-^^^^^^^^^^^^^^^^
+Usage example
+"""""""""""""
 
-This example worked well (singularity image and freesurfer license were both in my home folder)::
+Taking the above into consideration, I used the following script::
 
   export SINGULARITY_BINDPATH=/opt/ssd/mszczepanik/movrest_sourcedata:/data:ro,/opt/ssd/mszczepanik/movrest_PREP:/out,/opt/ssd/mszczepanik/fmriprep_work2:/work
   unset ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS
@@ -105,6 +114,8 @@ This example worked well (singularity image and freesurfer license were both in 
                  --fs-no-reconall \
                  -w /work \
                  /data /out participant
+
+See fmriprep docs [5]_ for the description of options.
 
 Use case: Neurodocker
 ---------------------
@@ -120,5 +131,5 @@ Singularity documentation
 
 Bids Apps on readthedocs
 
-  * `Running mriqc <https://mriqc.readthedocs.io/en/stable/running.html>`_
-  * `Fmriprep usage <https://fmriprep.readthedocs.io/en/stable/usage.html>`_
+.. [4] `Running mriqc <https://mriqc.readthedocs.io/en/stable/running.html>`_ - mriqc docs
+.. [5] `Fmriprep usage <https://fmriprep.readthedocs.io/en/stable/usage.html>`_ - fmriprep docs
