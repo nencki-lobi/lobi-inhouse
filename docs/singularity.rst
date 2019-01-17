@@ -120,6 +120,82 @@ See fmriprep docs [5]_ for the description of options.
 Use case: Neurodocker
 ---------------------
 
+Neurodocker [6]_ is a wonderful tool which can generate Docker and Singularity recipes for most common neuroimaging applications. You can run it using docker or install it using pip.
+
+Creating recipes
+^^^^^^^^^^^^^^^^
+
+Let's assume that you want to work with ANTs version 2.3.1. You can create the recipe using docker::
+
+  docker run --rm kaczmarj/neurodocker:0.4.3 generate singularity \
+    --base debian:stretch --pkg-manager apt --ants version=2.3.1 \
+    > Singularity
+
+or, if you installed through pip::
+
+  neurodocker generate singularity \
+    --base=debian:stretch --pkg-manager=apt --ants version=2.3.1 \
+    > Singularity
+
+In both cases we redirected the output to a file named `Singularity`, so we can build::
+
+  sudo singularity build ants231.simg Singularity
+
+Note that both docker itself and building from recipe in singularity require administrator privileges, so either execute these steps on your computer and copy the results or ask an admin to run them directly on Calcus.
+
+You can combine different packages in one container. See the description and examples on `Neurodocker's github <https://github.com/kaczmarj/neurodocker>`_ to see what you can do with it. And remember that if something is missing, you can use the generated recipes (they are just text files, try looking inside!) as a base and add your own stuff, e.g. by adding some ``apt install`` lines.
+
+Using containers created with Neurodocker
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Let's continue with the previous example. Executing the image::
+
+  ./ants231.simg
+
+will put you inside the container (technically speaking, it will start bash inside the container). You will have access to the programs installed within, instead of those installed natively on Calcus. You can test that::
+
+  which ANTS
+
+Finally, you can finish working in the container and go back to the outer environment::
+
+  exit
+
+When inside the container, you will not be able to access your files unless mounted (explicitly or by default, see above for details). Since Overlay is not currently enabled, you will have to mount to an existing location; ``/mnt`` seems like a sound choice. Assuming you want to work with data kept in ``/opt/ssd/myfolder``, you can do::
+
+  export SINGULARITY_BINDPATH=/opt/ssd/myfolder:/mnt
+  ./ants231.simg
+
+Getting a hang of inside vs outside
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Once again, let's continue with the previous example. Assuming you are `outside` the container you can try the following::
+
+  # see where system installed programs are
+  which ANTS
+  which tmux
+
+  # make sure you are not binding anything beyond default
+  unset SINGULARITY_BINDPATH
+
+  # enter the container
+  ./ants231.simg
+
+  # you have different ANTS at your disposal
+  which ANTS
+
+  # container has just the basics, no tmux inside
+  which tmux
+
+  # home folder is mounted by default
+  ls ~/
+
+  # but not e.g. /opt/ssd
+  ls /opt
+
+  # go back outside
+  exit
+
+
 References
 ----------
 
@@ -133,3 +209,7 @@ Bids Apps on readthedocs
 
 .. [4] `Running mriqc <https://mriqc.readthedocs.io/en/stable/running.html>`_ - mriqc docs
 .. [5] `Fmriprep usage <https://fmriprep.readthedocs.io/en/stable/usage.html>`_ - fmriprep docs
+
+Neurodocker
+
+.. [6] https://github.com/kaczmarj/neurodocker
