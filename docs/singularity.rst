@@ -3,9 +3,6 @@ Singularity
 
 Singularity is a container technology developed specifically for use on multi-tenant systems. A container allows you to run your software (or scientific workflow) in separation from the server's environment. You can use Singularity in a very similar way you would use Docker.
 
-.. todo ::
-  Everything related to fmriprep & bids apps needs to be rewritten and Neurodocker part needs to be written. The basics seem fine.
-
 The basics
 ----------
 
@@ -54,7 +51,7 @@ Alternatively, you can use the ``--bind`` option with ``singularity run``::
 
 In both cases, you should specify the bind paths as a comma-delimited string using the format ``src[:dest[:opts]]``. Possible options are ``ro`` (read only - used above for source data folder) and ``rw`` (read/write, default, used above for output directory).
 
-The destination path must exist within the container! In BIDS apps you will often use ``/data`` and ``/out`` folders as in the examples above. Often, ``/mnt`` folder will be a good target. This restriction can be changed by using Overlay, but currently we stuck with the defaults and kept it disabled.
+The overlay [4]_ feature has been enabled on our server, and as a result the destination bind points do not need to exist within the container (they will be created on an as-needed basis in an overlay file system without modifying the existing container [3]_). The use of `/data` and `/out` paths in the examples above follows the convention of BIDS apps.
 
 Use case: BIDS Apps
 -------------------
@@ -79,7 +76,7 @@ and run QC like this::
 
   ./mriqc.simg [options] /data /out participant
 
-For the list of options see [4]_
+For the list of options see [5]_
 
 Example - FMRIPREP
 ^^^^^^^^^^^^^^^^^^
@@ -115,12 +112,12 @@ Taking the above into consideration, I used the following script::
                  -w /work \
                  /data /out participant
 
-See fmriprep docs [5]_ for the description of options.
+See fmriprep docs [6]_ for the description of options.
 
 Use case: Neurodocker
 ---------------------
 
-Neurodocker [6]_ is a wonderful tool which can generate Docker and Singularity recipes for most common neuroimaging applications. You can run it using docker or install it using pip.
+Neurodocker [7]_ is a wonderful tool which can generate Docker and Singularity recipes for most common neuroimaging applications. You can run it using docker or install it using pip.
 
 Creating recipes
 ^^^^^^^^^^^^^^^^
@@ -160,9 +157,10 @@ Finally, you can finish working in the container and go back to the outer enviro
 
   exit
 
-When inside the container, you will not be able to access your files unless mounted (explicitly or by default, see above for details). Since Overlay is not currently enabled, you will have to mount to an existing location; ``/mnt`` seems like a sound choice. Assuming you want to work with data kept in ``/opt/ssd/myfolder``, you can do::
+When inside the container, you will not be able to access your files unless mounted (explicitly or by default, see above for details).
+You can either mount to a location existing within the container (likely such as ``/mnt``) or take use of the overlay feature and mount wherever you please. Assuming you want to work with data kept in ``/opt/ssd/myfolder`` and mount it under the same path you can do::
 
-  export SINGULARITY_BINDPATH=/opt/ssd/myfolder:/mnt
+  export SINGULARITY_BINDPATH=/opt/ssd/myfolder
   ./ants231.simg
 
 Getting a hang of inside vs outside
@@ -199,17 +197,18 @@ Once again, let's continue with the previous example. Assuming you are `outside`
 References
 ----------
 
-Singularity documentation
+Singularity
 
 .. [1] `Build a container <https://www.sylabs.io/guides/2.6/user-guide/build_a_container.html>`_ - Singularity 2.6 docs
 .. [2] `Installation <https://www.sylabs.io/guides/2.6/user-guide/installation.html>`_ - Singularity 2.6 docs
 .. [3] `Bind Paths and Mounts <https://www.sylabs.io/guides/2.6/user-guide/bind_paths_and_mounts.html>`_ - Singularity 2.6 docs
+.. [4] https://wiki.archlinux.org/index.php/Overlay_filesystem
 
-Bids Apps on readthedocs
+Bids Apps
 
-.. [4] `Running mriqc <https://mriqc.readthedocs.io/en/stable/running.html>`_ - mriqc docs
-.. [5] `Fmriprep usage <https://fmriprep.readthedocs.io/en/stable/usage.html>`_ - fmriprep docs
+.. [5] `Running mriqc <https://mriqc.readthedocs.io/en/stable/running.html>`_ - mriqc docs
+.. [6] `Fmriprep usage <https://fmriprep.readthedocs.io/en/stable/usage.html>`_ - fmriprep docs
 
 Neurodocker
 
-.. [6] https://github.com/kaczmarj/neurodocker
+.. [7] https://github.com/kaczmarj/neurodocker
