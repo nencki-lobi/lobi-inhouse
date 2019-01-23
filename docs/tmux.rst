@@ -36,6 +36,8 @@ Panes
 | ``C-b %`` Split the current pane into two, left and right.
 | ``C-b o`` Rotate the panes in the current window forwards (i. e. move to the next pane).
 | ``C-b x`` Kill the current pane.
+| ``C-b [`` Enable scrolling around (with arrows or PgDn&PgUp). Press ``q`` to quit.
+
 
 Windows
 
