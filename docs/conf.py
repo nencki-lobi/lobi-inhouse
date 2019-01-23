@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'LOBI inhouse resources'
-copyright = '2018, Michał Szczepanik, Bartosz Kossowski'
-author = 'Michał Szczepanik, Bartosz Kossowski'
+copyright = '2018-2019, members of Laboratory of Brain Imaging'
+author = 'Michał Szczepanik, Bartosz Kossowski, Malwina Molendowska'
 
 # The short X.Y version
 version = ''
