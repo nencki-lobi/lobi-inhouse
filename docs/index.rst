@@ -10,7 +10,7 @@ Materials contained here should help you with using our computer resources, most
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Calcus:
 	     
    calcus_basics
    command_line
@@ -22,3 +22,11 @@ Materials contained here should help you with using our computer resources, most
    tips_and_tricks
    administration
    contributing
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Other resources:
+
+   qnap
+
