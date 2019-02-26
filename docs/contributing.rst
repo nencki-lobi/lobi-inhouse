@@ -6,4 +6,4 @@ Out of resources linked therein, the `reStructuredTextPrimer <http://www.sphinx-
 
 You can edit the .rst files to change the documentation.
 
-The source files are hosted `on GitHub <https://github.com/mslw/lobi-inhouse>`_. Feel free to open pull requests, contribute directly (if you were added as collaborator) or open issues (if you would like something to be added, but you don't feel up to writing that yourself).
+The source files are hosted `on GitHub <https://github.com/nencki-lobi/lobi-inhouse>`_. Feel free to open pull requests, contribute directly (if you were added as collaborator) or open issues (if you would like something to be added, but you don't feel up to writing that yourself).
