@@ -40,7 +40,7 @@ The administrator account has many more apps, including Control Panel, user mana
 Home folder and shared folders
 ------------------------------
 
-Each user has his own *home folder*, visible only for them. Under ``home``, everybody sees their own folder (technically, all home folders are in the ``homes`` directory).
+Each user has their own *home folder*, visible only for them. This means that under ``home``, everybody sees their own folder (technically, all home folders are located in the ``homes`` directory, but this is not exposed to the users).
 
 In addition, there is a possibility of creating *shared folders*. For each shared folder, there are access rights, which determine whether or not a given user can aceess the files. There are three possibilities: read/write, read only, no access. Only administrator can create shared folders and manage access rights, so talk to Michał if you need anything.
 
@@ -67,4 +67,4 @@ The QNAP is accessible only within the local network. When working remotely, you
 Recycle Bin
 ^^^^^^^^^^^
 
-Delited files *should* be automatically moved to the network Recycle Bin. Retention time (admin: Control Panel - Kosz sieciowy) has been set to 180 days. We have *not* thoroughly verified the way recycle bin works, so please be careful.
+Delited files *should* be automatically moved to the network Recycle Bin. Retention time (admin: Panel sterowania - Kosz sieciowy) has been set to 31 days. We have *not* thoroughly verified the way recycle bin works, so please be careful.
