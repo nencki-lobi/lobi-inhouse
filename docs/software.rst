@@ -12,16 +12,15 @@ List
 | matlab + matlab-support dep: libxt6
 | python 2.7
 | python 3.6
-| fsl (fslinstaller.py)
+| fsl 6.0.1 (default)
+| fsl 5.0 build 509 (type fsl5.0-)
 | dti-tk dep: libgl1
 | mrtrix3 dep: git g++ python python-numpy libeigen3-dev zlib1g-dev libqt4-opengl-dev libgl1-mesa-dev libfftw3-dev libtiff5-dev (neurodebian)
 
 ANTs
 --------------------
 
-..  caution:: The most updated version (clone of github repository) is located in /opt/software/ants_scripts/.
-  Use absolute path if you want to be sure that there are no bugs in the ANTs scripts.
-  However, default paths are set to neurodebian's installation (scripts & binaries) for better compatibility.
+..  caution:: Default version of ANTs is installed from neurodebian repository and it is quite outdated. It is recommended to use the newest ANTs inside Singularity container. Just change directory to ``/opt/software`` and type ``./ants.simg``. 
 
 Parallelization and multithreading
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
