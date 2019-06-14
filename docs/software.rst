@@ -72,3 +72,28 @@ And, when you are done, deactivate::
 
 .. [2] Pip User Guide, https://pip.readthedocs.io/en/latest/user_guide/#user-installs
 .. [3] Pipenv & Virtual Environments -- The Hitchhiker's Guide to Python, https://docs.python-guide.org/dev/virtualenvs/#lower-level-virtualenv
+
+MATLAB
+--------------------
+
+There is no GUI. Type `matlab` to open command line interface. Feel free to run Your scripts.
+
+Multivariate and Repeated Measures for Neuroimaging (MRM)
+^^^^^^^^^^^^^^^^^^^^
+
+MRM is pretty RAM demanding. It can be very efficient to estimate Your model on Calcus comparing to standard PC. It goes like this:
+1. Prepare Your model in MRM GUI on Your PC. Save the model to MRM.mat. Upload both data and MRM.mat to Calcus.
+2. Start MATLAB and add MRM toolbox
+`addpath /opt/software/MRM_v1.1`
+3. Adapt filepaths in the config file.
+`spm_changepath('MRM.mat','C:/MyOldPath','\home\user\data')`
+the output should be:
+\home\user\datafile1.nii
+\home\user\datafile2.nii
+...
+\home\user\datafileN.nii
+\home\user\output
+=> Fixing MRM.mat
+4. Load and estimate model
+`load('MRM.mat')
+MRM_estimate`
