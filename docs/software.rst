@@ -82,10 +82,10 @@ Multivariate and Repeated Measures for Neuroimaging (MRM)
 ^^^^^^^^^^^^^^^^^^^^
 
 MRM is pretty RAM demanding. It can be very efficient to estimate Your model on Calcus comparing to standard PC. It goes like this:
-1. Prepare Your model in MRM GUI on Your PC. Save the model to MRM.mat. Upload both data and MRM.mat to Calcus.
-2. Start MATLAB and add MRM toolbox
+|1. Prepare Your model in MRM GUI on Your PC. Save the model to MRM.mat. Upload both data and MRM.mat to Calcus.
+|2. Start MATLAB and add MRM toolbox
 `addpath /opt/software/MRM_v1.1`
-3. Adapt filepaths in the config file.
+|3. Adapt filepaths in the config file.
 `spm_changepath('MRM.mat','C:/MyOldPath','\home\user\data')`
 the output should be:
 \home\user\datafile1.nii
@@ -94,6 +94,6 @@ the output should be:
 \home\user\datafileN.nii
 \home\user\output
 => Fixing MRM.mat
-4. Load and estimate model
+|4. Load and estimate model
 `load('MRM.mat')
 MRM_estimate`
