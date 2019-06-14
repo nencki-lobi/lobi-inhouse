@@ -26,7 +26,9 @@ MRM is pretty RAM demanding. It can be very efficient to estimate Your model on 
 3. Adapt filepaths in the config file.
 
 `spm_changepath('MRM.mat','C:/MyOldPath','\home\user\data')`
+
 the output should be:
+
 \home\user\datafile1.nii
 \home\user\datafile2.nii
 ...
