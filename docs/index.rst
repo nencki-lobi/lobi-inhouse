@@ -11,7 +11,7 @@ Materials contained here should help you with using our computer resources, most
 .. toctree::
    :maxdepth: 2
    :caption: Calcus:
-	     
+
    calcus_basics
    command_line
    transferring_data
@@ -19,6 +19,7 @@ Materials contained here should help you with using our computer resources, most
    software
    singularity
    matlab
+   nipype
    tips_and_tricks
    administration
    contributing
@@ -29,4 +30,3 @@ Materials contained here should help you with using our computer resources, most
    :caption: Other resources:
 
    qnap
-
