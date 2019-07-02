@@ -61,7 +61,10 @@ in the end, I want to put smoothed files in::
 The walkthrough
 ^^^^^^^^^^^^^^^
 
-First, required imports (I will explain them later)::
+Prepare the basics
+""""""""""""""""""
+
+First, required imports (their roles will become clear later)::
 
   import nipype.interfaces.spm as spm
   import os
@@ -90,9 +93,19 @@ Then, I should define the paths to my data::
 The ``func_template`` is a string containing the path to a file, relative to ``DERIV_DIR`` with subject ID and task label
 replaced by expressions in curly braces: ``{subject_id}`` and ``{task_label}``.
 These will be useful later, because we will have Nipype fill them in for us.
-I also prepared lists of subject codes and task names to be used (for this example, I am processing two subjects only).
+I also prepared lists of subject codes and task names to be used (for this example, I am processing only two subjects).
 
-Now it's time to create pipeline *nodes*. We will create them first, and connect them later.
+Create the nodes
+""""""""""""""""
+
+Now it's time to create pipeline *nodes*.
+A node executes a single processing step.
+We will create them first, and connect them later.
+
+In this example, the plan is to create a total of five nodes: two will perform actual processing (gunzip and smooth),
+and additional three will be needed to handle input and output (one to accept lists of subjects and sessions
+and pass them further, one to select files, one to manage file output).
+
 Let's start with gunzip to decompress files. This one is simple::
 
   gunzip = Node(Gunzip(), name='gunzip')
@@ -102,7 +115,7 @@ so the source files will remain untouched.
 
 Next in line is the smoothing node.
 Full documentation, with a list of inputs and outputs, can be found `here <https://nipype.readthedocs.io/en/1.2.0/interfaces/generated/interfaces.spm/preprocess.html#smooth>`_.
-We do not define the obligatory ``in_files`` input, because we are planning to feed multiple values into the pipeline later::
+Note that we do not define the mandatory ``in_files`` input at this stage, because we are planning to feed multiple values into the pipeline later::
 
   smooth = Node(spm.Smooth(), name='smooth')
   smooth.inputs.fwhm = [8, 8, 8]
@@ -110,9 +123,9 @@ We do not define the obligatory ``in_files`` input, because we are planning to f
 
 With the two nodes in place, we should start worrying about input and output. First, let's create an ``IdentityNode``.
 Its job is to pass values to other nodes. Let's name it *infosource* and give it two fields, through which we will
-be specifying subjects and tasks. What's important is that we will change its fields into *iterables*,
-meaning that they will accept lists of inputs and split the workflow into multiple copies (we do this because we want to
-process multiple subjects and multiple tasks)::
+be specifying subjects and tasks. At this stage, we enter the lists of subject codes and tasks which we prepared earlier.
+What's important is that we change both fields into *iterables*, meaning that they will accept lists of inputs
+and split the workflow into multiple copies (we do this because we want to process multiple subjects and multiple tasks)::
 
   infosource = Node(
       IdentityInterface(fields=['subject_id', 'task_label']),
@@ -142,10 +155,13 @@ With input blocks ready, it's time for ``DataSink``, which is a node for writing
   datasink.inputs.regexp_substitutions = [('_task_label_[a-z]+', '')]
 
 The ``container`` parameter specifies name of the folder to be placed in ``base_directory``. All outputs of the data sink
-will be collected there. However, nodes create their own folder names, so I defined some substitutions to simplify output
-paths. I used both ``substitutions`` (simple replacement) and ``regexp_substitutions`` (regular expression replacement);
+will be collected there. However, nodes create their own folder names, so we should some substitutions to simplify output
+paths. Here, I used both ``substitutions`` (simple replacement) and ``regexp_substitutions`` (regular expression replacement);
 if both are present, the simple ones are performed first. Best way to figure out what substitutions will be required
 is to run the pipeline on a single subject.
+
+Join nodes into a workflow
+""""""""""""""""""""""""""
 
 With all nodes ready and waiting, it's time to create a workflow::
 
@@ -176,10 +192,16 @@ Which means that we want to connect:
 Most of these connection points are defined by the nodes (e.g. ``spm.Smooth`` has one output, called ``smoothed_files``).
 You can find them in Nipype's API. For some nodes we defined the names ourselves upon creation:
 in ``infosource`` by specifying ``fields`` attribute, and in ``selectfiles`` by specifying templates (dictionary keys
-define outputs, expressions in curly braces define inputs). The datasink is unique in that it does not need any inputs defined
+define outputs, expressions in curly braces define inputs).
+
+The datasink is unique in that it does not need any inputs defined
 in advance. Instead, the names we give when connecting will be translated to output folder names.
-Use ``foo.bar`` to create subdirectories (``foo/bar``). Since one input cannot be connected to twice, use ``foo`` and ``foo.@bar``
-to place two things in ``foo`` without creating subdirectories.
+We don't do this in current example, but you can use ``foo.bar`` to create subdirectories (``foo/bar``)
+or ``foo.@bar`` to place an additional thing in ``foo`` without creating subdirectories
+(``@bar`` is used because the ``foo`` input can accept only one connection).
+
+Run the workflow
+""""""""""""""""
 
 Finally, it's time to run the workflow. We can use parallelisation. Here, I'm using 4 processor cores::
 
