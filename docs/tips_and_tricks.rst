@@ -12,12 +12,33 @@ While htop is running, you can press:
 * ``H`` to toggle the display of user process threads
 * ``q`` to quit
 
-You can ran htop monochrome mode by lounching it with ``htop -C`` (I noticed some problems when running htop inside tmux, and monochrome mode helped).
+You can run htop in monochrome mode by launching it with ``htop -C`` (I noticed some problems when running htop inside tmux, and monochrome mode helped).
 
-SSH keys
---------
+SSH
+----
+
+SSH key
+^^^^^^^
 
 You can use SSH key to log in to Calcus without password authentication. See the excellent and very detailed explanation on `Arch Linux wiki <https://wiki.archlinux.org/index.php/SSH_keys>`_ or a shorter write-up in `Ubuntu documentation <https://help.ubuntu.com/community/SSH/OpenSSH/Keys>`_.
+
+Alias
+^^^^^
+
+You can use the ssh config file to assign an alias for the server, so that you won't need to type the username and ip address each time you connect. Full instructions can be found on `howtoogeek <https://www.howtogeek.com/75007/stupid-geek-tricks-use-your-ssh-config-file-to-create-aliases-for-hosts/>`_.
+
+In short, you can put the following in your config file (``~/.ssh/config``, you may need to create it first), replacing your user name::
+
+  Host calcus
+    User your-user-name-here
+    HostName 192.168.199.58
+
+This will allow you to login or copy with::
+
+  ssh calcus
+  scp localfile calcus:remotefile
+  
+If you combine that with using an ssh key as suggested above, you will not have to type your password either.
 
 Bash keyboard shortcuts
 -----------------------
