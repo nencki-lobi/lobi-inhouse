@@ -7,6 +7,7 @@ List
 --------------------
 
 | ants (neurodebian)
+| freesurfer 6.0 (BIDS-Apps)
 | docker (official repo)
 | singularity (neurodebian)
 | matlab + matlab-support dep: libxt6
@@ -16,6 +17,10 @@ List
 | fsl 5.0 build 509 (type fsl5.0-)
 | dti-tk dep: libgl1
 | mrtrix3 dep: git g++ python python-numpy libeigen3-dev zlib1g-dev libqt4-opengl-dev libgl1-mesa-dev libfftw3-dev libtiff5-dev (neurodebian)
+
+Freesurfer
+--------------------
+Freesurfer is available as a Singularity container (/opt/software/bids_freesurfer.simg). All You need is to prepare Your data according to BIDS standard and run a long command eg. ``singularity run --bind /home/myname/data:/bids_dataset:ro,/home/myname/outputs:/outputs,/home/myname/freesurfer_license.txt:/license.txt /opt/software/bids_freesurfer.simg /bids_dataset /outputs participant --participant_label 01 --license_file "/license.txt"``, where license.txt is a file obtained after the FS's `registration <https://surfer.nmr.mgh.harvard.edu/registration.html>`. Other container specific options are listed on a `github <https://github.com/BIDS-Apps/freesurfer>`. Read more about Singularity containers `here <https://lobi-inhouse.readthedocs.io/en/latest/singularity.html>`.
 
 ANTs
 --------------------
