@@ -22,6 +22,10 @@ Freesurfer
 --------------------
 Freesurfer is available as a Singularity container (/opt/software/bids_freesurfer.simg). All You need is to prepare Your data according to BIDS standard and run a long command eg. ``singularity run --bind /home/myname/data:/bids_dataset:ro,/home/myname/outputs:/outputs,/home/myname/freesurfer_license.txt:/license.txt /opt/software/bids_freesurfer.simg /bids_dataset /outputs participant --participant_label 01 --license_file "/license.txt"``, where license.txt is a file obtained after the FS's `registration <https://surfer.nmr.mgh.harvard.edu/registration.html>`_. Other container specific options are listed on a `github <https://github.com/BIDS-Apps/freesurfer>`_. Read more about Singularity containers `here <https://lobi-inhouse.readthedocs.io/en/latest/singularity.html>`_.
 
+mrtrix
+--------------------
+Parallel computing has been limited to 8 CPUs by respective parameter within /etc/mrtrix.conf file.
+
 ANTs
 --------------------
 
