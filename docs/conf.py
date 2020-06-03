@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'LOBI inhouse resources'
-copyright = '2018-2019, members of Laboratory of Brain Imaging'
+copyright = '2018-2020, members of Laboratory of Brain Imaging'
 author = 'Michał Szczepanik, Bartosz Kossowski, Malwina Molendowska'
 
 # The short X.Y version
