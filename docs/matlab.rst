@@ -41,6 +41,28 @@ MRM is pretty RAM demanding. It can be very efficient to estimate your model on 
     load('MRM.mat')
     MRM_estimate
 
+Matlab & GNU Parallel
+---------------------
+
+We have several licenses for Matlab's Parallel Computing Toolbox and there are no reasons not to use it. Should you wish to simply launch multiple instances of Matlab instead, `GNU parallel <https://www.gnu.org/software/parallel/>`_ presents an alternative. An example use case might be as follows.
+
+Let's assume that the analysis can be launched using a function ``process_one`` which takes subject label as the input. In this case, subsequent inputs (subject labels) are placed in a text file ``to_process.txt``, one subject per line (and ideally wrapped in quotes, eg. "sub-01", so that they will be treated as strings when placed into a Matlab command and parallel will handle escaping). Copying strings from a table in Matlab GUI is an easy way to do make such file. If using the matlabbatch from SPM or PsPM, you can create a "single-subject" batch & script (i. e. without looping over subjects within the script) and turn it into a function. Analysis can be launched with::
+
+  parallel -a to_process.txt --jobs 4 'matlab -nodisplay -nosplash -singleCompThread -batch "process_one({})" > /dev/null'
+
+For GNU Paralell, ``-a`` (short for ``--arg-file``) is used to specify input file, and ``--jobs`` specifies the number of jobs to run in parallel. Then follows the command to be run in parallel, where ``{}`` denotes input line (to be inserted from the input file).
+
+In the matlab call, the following options were used:
+
+  * ``-nodisplay``: do not display any X commands; the MATLAB desktop will not be started (won't be needed from R2019 onwards)
+  * ``-nosplash``: do not display the splash screen during startup (redundant if nodisplay is used?)
+  * ``-singleCompThread``: limit each instance to one computing thread
+  * ``-batch``: run the specified statement non-interactively (exits Matlab after the function ends; officially added in  R2019a but apparently works undocumented in R2018b)
+
+Additionally:
+
+  * The output was piped (``>``) to ``/dev/null`` (a black hole where everything sinks) - avoids cluttering the display, but makes it harder to see that something went wrong
+  * Another Matlab option, ``-nojvm``, could be used in some cases to disable Java and speed up Matlab startup. Java is used mainly by GUI, but also for plotting, so this option was not used here.
 
 Things to keep in mind
 ----------------------
