@@ -3,6 +3,17 @@ Admin actions
 
 Things that can / should be done by the administrator are kept here, so that we don't forget how to do them when they have to be done again.
 
+Adding users
+------------
+
+Instead of the default ``adduser`` (and low-level ``useradd``) it is preferred to use the ``/root/scripts/add_user.sh`` script contributed by P. Redel.
+In addition to wrapping around ``useradd`` it takes care of other things like setting up samba. Usage::
+
+    ./add_user.sh USERNAME* - the password will be generated automatically
+    ./add_user.sh USERNAME* PASSWORD - password in unencrypted form (avoid special characters)
+    
+For usernames, we try to keep the convention of using first letter of name followed by surname (eg. jsmith).
+
 MOTD
 ----
 
