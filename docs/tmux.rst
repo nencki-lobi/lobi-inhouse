@@ -6,7 +6,7 @@ Tmux is a wonderfully useful tool. We recommend using it for long-running pipeli
 Introduction
 ------------
 
-For a concise, enthusiastic, 10 minutes long introduction to tmux watch `The Lunduke Show episode on tmux <https://www.youtube.com/watch?v=5iXzqN8-34E>`_.
+For a concise, enthusiastic, 10 minutes long introduction to tmux watch `The Lunduke Show episode on tmux <https://odysee.com/@Lunduke:e/tmux-the-desktop-environment-for-your:a>`_.
 
 Usage
 -----
