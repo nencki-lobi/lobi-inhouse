@@ -1,12 +1,21 @@
 Tmux
 ====
 
-Tmux is a wonderfully useful tool. We recommend using it for long-running pipelines: you can connect to Calcus over SSH, start your script inside a tmux session, detach from tmux and logout - this way, your script will keep on running, even though you are logged out (typically when you disconnect from SSH, your running processes are terminated, but the tmux session remains active on its own). Furthermore, with its windows and panes, tmux comes useful when you want to do multiple things in one terminal window. Another program, GNU Screen, serves the same purpose, but is not covered by this manual.
+Tmux is a wonderfully useful tool. We recommend using it for long-running pipelines: you can connect to Calcus over SSH, start your script inside a tmux session, detach from tmux and logout - this way, your tasks will keep on running, even though you are logged out (typically when you disconnect from SSH, your running processes are terminated, but the tmux session remains active on its own).
+
+Furthermore, with its windows and panes, tmux comes useful when you want to do multiple things in one terminal window. Another program, GNU Screen [1]_, serves the same purposes, and is also available on calcus, but is not covered by this manual.
 
 Introduction
 ------------
 
-For a concise, enthusiastic, 10 minutes long introduction to tmux watch `The Lunduke Show episode on tmux <https://odysee.com/@Lunduke:e/tmux-the-desktop-environment-for-your:a>`_.
+For a concise, enthusiastic, 10 minutes long introduction to tmux watch `The Lunduke Show episode on tmux <https://odysee.com/@Lunduke:e/tmux-the-desktop-environment-for-your:a>`_ (highly recommended).
+
+The very basics
+---------------
+
+Tmux is used to start *sessions* (collections of pseudo-terminals). A session has at least one *window*, and each window can be split into *panes*. Sessions are persistent against disconnection (be it intentional or accidental). When a session is running, you can detach from it and reattach back later (even after logging out and back in, or from another computer).
+
+From an introduction to exhaustive details, you'll find everything in tmux's wiki [2]_ or in its man page [3]_. The most useful commands are listed below.
 
 Usage
 -----
@@ -14,9 +23,17 @@ Usage
 Outside tmux
 ^^^^^^^^^^^^
 
-| ``tmux`` to start tmux
-| ``tmux attach`` to attach to a previously started session
+Three most important commands:
+
+| ``tmux`` to start tmux and attach to a new session (equivalent ``tmux new``)
+| ``tmux attach`` to attach to a previously detached session
 | ``tmux ls`` to list running sessions
+
+More specific, also useful:
+
+| ``tmux attach -t target-session`` to attach to a specific session
+| ``tmux kill -t target-session`` to destroy given session
+
 
 Inside tmux (key bindings)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -45,3 +62,12 @@ Windows
 | ``C-b [0 to 9]`` Select windows 0 to 9.
 | ``C-b &`` Kill the current window.
 | ``C-b q`` Briefly display pane indexes.
+
+
+References
+----------
+
+.. [1] Screen - GNU Project - Free Software Foundation https://www.gnu.org/software/screen/
+.. [2] Getting Started - tmux wiki https://github.com/tmux/tmux/wiki/Getting-Started
+.. [3] tmux - OpenBSD manual pages https://man.openbsd.org/tmux
+
