@@ -24,6 +24,11 @@ Materials contained here should help you with using our computer resources, most
    administration
    contributing
 
+.. toctree::
+   :maxdepth: 2
+   :caption: MRI primer:
+
+   mri_primer
 
 .. toctree::
    :maxdepth: 1
