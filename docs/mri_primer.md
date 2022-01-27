@@ -47,19 +47,19 @@ Depending on how many sessions you are downloading, or how granular you want to 
 * If you want to download all your project's data at once, you can go to the project page and select **Download Images** from the actions menu.
 
 <video width="640" height="480" controls>
-  <source src="../../mov/xnat-download-fantomy.mov" type="video/mp4">
+  <source src="_static/xnat-download-fantomy.mov" type="video/mp4">
 </video>
 
 * If you're interested in any individual session, you can go to this session's page and select **Download > Download Images** from the actions menu.
 
 <video width="640" height="480" controls>
-  <source src="../../mov/xnat-download-poduszkagrubas.mov" type="video/mp4">
+  <source src="_static/xnat-download-poduszkagrubas.mov" type="video/mp4">
 </video>
 
 * If you're interested in a subset of data from your project, you can use the [advanced search](https://wiki.xnat.org/documentation/how-to-use-xnat/using-the-standard-search/using-the-advanced-search) and select **Options > Download** in the resulting table listing's menu.
 
 <video width="640" height="480" controls>
-  <source src="../../mov/xnat-download-advanced-search.mov" type="video/mp4">
+  <source src="_static/xnat-download-advanced-search.mov" type="video/mp4">
 </video>
 
 **NOTE:** XNAT provides [extensive documentation](https://wiki.xnat.org/documentation/how-to-use-xnat/how-to-download-image-data-from-xnat-projects) on how to download your data.
