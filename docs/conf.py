@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'LOBI inhouse resources'
-copyright = '2018-2021, members of Laboratory of Brain Imaging'
-author = 'Michał Szczepanik, Bartosz Kossowski, Malwina Molendowska'
+copyright = '2018-2022, members of Laboratory of Brain Imaging'
+author = 'Bartosz Kossowski, Malwina Molendowska, Michał Szczepanik, Małgorzata Wierzba'
 
 # The short X.Y version
 version = ''
@@ -133,7 +133,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'LOBIinhouseresources.tex', 'LOBI inhouse resources Documentation',
-     'Michał Szczepanik', 'manual'),
+     'LOBI Team', 'manual'),
 ]
 
 
