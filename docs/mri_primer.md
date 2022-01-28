@@ -73,6 +73,7 @@ There are many tools that can help you convert your images from `DICOM` (format 
 If you prefer GUI-based software, you can use [MRIConvert](https://lcni.uoregon.edu/downloads/mriconvert/mriconvert-and-mcverter). Detailed instructions on how to install and use this software are provided [here](https://lcni.uoregon.edu/downloads/mriconvert/mriconvert-and-mcverter).
 
 If you're more into command line, you can try `dcm2niix` (or `dcm2nii`), for more information go [here](https://www.nitrc.org/projects/dcm2nii/). Note, that this software is distributed with [MRIcron](https://www.nitrc.org/projects/mricron/) / [MRIcroGL](https://www.nitrc.org/projects/mricrogl/) image viewers and can be run from the command line or from the graphical user interface (GUI).
+Alternatively, standalone versions (command line only) can be obtained directly from [GitHub](https://github.com/rordenlab/dcm2niix) or some package managers such as Homebrew (see the Install section in README of the linked GitHub page).
 
 **NOTE:** Chris Rorden's Lab (group responsible for the development of `dcm2niix`) curates the [list](https://github.com/rordenlab/dcm2niix#alternatives) of software that can be used for `DICOM` to `NIfTI` conversion.
 
@@ -85,5 +86,7 @@ While originally specified for MRI data, BIDS has been already extended to sever
 For more information visit [BIDS](https://bids.neuroimaging.io/index.html) website.
 
 A community-curated collection of tutorials, wikis, and templates to get you started with creating BIDS compliant datasets can be found [here](https://bids-standard.github.io/bids-starter-kit/index.html).
+
+One converter worth mentioning is [HeuDiConv](https://heudiconv.readthedocs.io), which performs DICOM to NIfTI conversion with `dcm2niix` and generates file naming patterns based on a heuristic provided by the user.
 
 Last, but certainly not least, there is a decent [Horos / OsiriX BIDS plugin](https://github.com/mslw/horos-bids-output), created by [Michał Szczepanik](https://github.com/mslw)!
